@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 66,
-    height: 58,
+    width: 280,
+    height: 80,
   },
 });
 
@@ -18,8 +18,8 @@ const DisplayAnImage = () => {
     <View style={styles.container}>
       
       <Image
-        style={styles.tinyLogo}
-        source={required("./FINAL-GAT-LOGO-DARK-1.webp")}
+        style={styles.logo}
+        source={require("./FINAL-GAT-LOGO-DARK-1.webp")}
       />
       
     </View>
