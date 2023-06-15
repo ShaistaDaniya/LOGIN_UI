@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DisplayAnImage = () => {
+const FIRSTImage = () => {
   return (
     <View style={styles.container}>
       
@@ -26,4 +26,4 @@ const DisplayAnImage = () => {
   );
 };
 
-export default DisplayAnImage;
+export default FIRSTImage;
