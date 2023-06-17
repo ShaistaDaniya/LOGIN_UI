@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Image, Text, StyleSheet, TextInput, TouchableOpacity,Linking } from 'react-native';
+import { View, Image, Text, StyleSheet, TextInput, TouchableOpacity, Linking } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,61 +9,65 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
+    marginTop:60,
     width: 223,
     height: 64,
-    flex: "none",
-    order: 0,
-    flexGrow: 0,
+  },
+  register: {
+    width: 227,
+    height: 28,
+    marginTop: 0,
+    marginLeft: 6,
+    fontSize: 16,
+    lineHeight: 28
+  },
+  regview: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 1,
+    fontSize: 16,
+  
     
   },
-  
-  register:{
-    width:227,
-    height:28,
-    marginTop:60,
-    marginLeft:16,
-    fontSize:16,
-    lineHeight:28
-  },
-  regview:{
-   
-    fontSize:16,
-  },
-  num:{
-    height:56,
-    borderColor: 'blue',
+  num: {
+    height: 56,
+    borderColor: 'darkBlue',
     padding: 10,
     borderWidth: 1,
     borderRadius: 5,
-    margin:16
+    marginTop: 10,
+    width: 360
   },
   button: {
-    marginTop:23,
-    backgroundColor: 'lightgray',
-    color:'white',
+    marginTop: 23,
+    backgroundColor: 'darkblue',
+    color: 'white',
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 154,
     borderRadius: 5,
-    height:42,
-    margin:16
+    height: 42,
+    margin: 16,
+    textAlign: 'center'
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
-    textAlign: 'center'
+    textAlign: 'center',
+    width:49
   },
-  text:{
-    padding:12,
-    fontSize:16,
-    LineHeight:19.92,
-    
+  text: {
+    padding: 12,
+    fontSize: 16,
+    lineHeight: 19.92,
   },
-  Need:{
-    padding:10,
-    fontSize:16,
-    LineHeight:19.92,
-    textAlign:'center',
-     marginTop:248,
+  Need: {
+    padding: 10,
+    fontSize: 16,
+    lineHeight: 19.92,
+    textAlign: 'center',
+    marginTop: 60,
   },
   supportText: {
     padding: 10,
@@ -71,6 +76,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'blue',
     textDecorationLine: 'underline',
+  },
+  checkboxContainer: {
+    position: 'absolute',
+    right: 10,
+    top: '35%',
+    transform: [{ translateY: -12 }],
   },
 });
 
@@ -90,7 +101,15 @@ const FIRSTImage = () => {
 };
 
 const PhoneNumberInput = () => {
+  const [checked, setChecked] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
+  const handleCheckBoxToggle = () => {
+    setChecked(!checked);
+
+    if (checked) {
+      setPhoneNumber('');
+    }
+  };
 
   const handlePhoneNumberChange = (text) => {
     // Remove any non-digit characters from the input
@@ -109,33 +128,45 @@ const PhoneNumberInput = () => {
 
   return (
     <View style={styles.regview}>
-      <Text style={styles.register} >Your Registered Phone Number:</Text>
-      <TextInput style={styles.num}
-        keyboardType="phone-pad"
-        placeholder="Enter phone number"
-        value={phoneNumber}
-        onChangeText={handlePhoneNumberChange}
-      />
+      <Text style={styles.register}>Your Registered Phone Number:</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <TextInput
+          style={styles.num}
+          keyboardType="phone-pad"
+          placeholder="Enter phone number"
+          value={phoneNumber}
+          onChangeText={handlePhoneNumberChange}
+        />
+        <View style={styles.checkboxContainer}>
+          <CheckBox
+            center
+            iconType='material'
+            checkedIcon='clear'
+            uncheckedIcon='clear'
+            checkedColor='darkblue'
+            checked={checked}
+            onPress={handleCheckBoxToggle}
+          />
+        </View>
+      </View>
       <TouchableOpacity style={styles.button} onPress={handleNextButton}>
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>Next > </Text>
       </TouchableOpacity>
       <Text style={styles.text}>
-      By proceeding, you consent to get SMS messages including by automated means, from Gig and Take and its affiliates to the phone number provided</Text>
+        By proceeding, you consent to get SMS messages including by automated means, from Gig and Take and its affiliates to the phone number provided
+      </Text>
 
 
-    <Text style={styles.Need}>
-    Need help ?
-    </Text>
-    <Text style={styles.supportText} onPress={handleSupportTextPress}>
+      <Text style={styles.Need}>
+        Need help ?
+      </Text>
+      <Text style={styles.supportText} onPress={handleSupportTextPress}>
         Contact for support
       </Text>
     </View>
-    
+
   );
 };
 
-const NextButton = () => {
-
-}
-
 export default FIRSTImage;
+
