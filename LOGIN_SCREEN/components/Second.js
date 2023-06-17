@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Image, Text, StyleSheet, TextInput, TouchableOpacity,Linking } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     lineHeight:28
   },
   regview:{
-    marginBottom:350,
+   
     fontSize:16,
   },
   num:{
@@ -52,10 +52,26 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   text:{
+    padding:12,
+    fontSize:16,
+    LineHeight:19.92,
+    
+  },
+  Need:{
     padding:10,
     fontSize:16,
-    LineHeight:19.92
-  }
+    LineHeight:19.92,
+    textAlign:'center',
+     marginTop:248,
+  },
+  supportText: {
+    padding: 10,
+    fontSize: 16,
+    lineHeight: 19.92,
+    textAlign: 'center',
+    color: 'blue',
+    textDecorationLine: 'underline',
+  },
 });
 
 const FIRSTImage = () => {
@@ -85,6 +101,10 @@ const PhoneNumberInput = () => {
     // Handle the logic for the Next button here
     console.log('Next button clicked');
   };
+  const handleSupportTextPress = () => {
+    const supportURL = ''; // Replace with your contact web page URL
+    Linking.openURL(supportURL);
+  };
 
 
   return (
@@ -100,7 +120,15 @@ const PhoneNumberInput = () => {
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
       <Text style={styles.text}>
-By proceeding, you consent to get SMS messages including by automated means, from Gig and Take and its affiliates to the phone number provided</Text>
+      By proceeding, you consent to get SMS messages including by automated means, from Gig and Take and its affiliates to the phone number provided</Text>
+
+
+    <Text style={styles.Need}>
+    Need help ?
+    </Text>
+    <Text style={styles.supportText} onPress={handleSupportTextPress}>
+        Contact for support
+      </Text>
     </View>
     
   );
