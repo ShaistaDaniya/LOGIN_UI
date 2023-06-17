@@ -134,7 +134,4 @@ const PhoneNumberInput = () => {
     
   );
 };
-
-
-
 export default FIRSTImage;
