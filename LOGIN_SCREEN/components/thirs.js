@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    marginTop:90,
+    marginTop:60,
     width: 223,
     height: 64,
   },
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 16,
+    padding: 1,
     fontSize: 16,
   
     
@@ -37,23 +37,25 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderRadius: 5,
-    margin: 10,
-    width: 322
+    marginTop: 10,
+    width: 360
   },
   button: {
     marginTop: 23,
     backgroundColor: 'darkblue',
     color: 'white',
     paddingVertical: 10,
-    paddingHorizontal: 150,
+    paddingHorizontal: 154,
     borderRadius: 5,
     height: 42,
-    margin: 16
+    margin: 16,
+    textAlign: 'center'
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
-    textAlign: 'center'
+    textAlign: 'center',
+    width:49
   },
   text: {
     padding: 12,
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19.92,
     textAlign: 'center',
-    marginTop: 200,
+    marginTop: 60,
   },
   supportText: {
     padding: 10,
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     position: 'absolute',
     right: 10,
-    top: '28%',
+    top: '35%',
     transform: [{ translateY: -12 }],
   },
 });
@@ -148,7 +150,7 @@ const PhoneNumberInput = () => {
         </View>
       </View>
       <TouchableOpacity style={styles.button} onPress={handleNextButton}>
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>Next > </Text>
       </TouchableOpacity>
       <Text style={styles.text}>
         By proceeding, you consent to get SMS messages including by automated means, from Gig and Take and its affiliates to the phone number provided
@@ -167,3 +169,4 @@ const PhoneNumberInput = () => {
 };
 
 export default FIRSTImage;
+
