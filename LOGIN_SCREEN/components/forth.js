@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
-const BlankScreen = () => {
+const LoadingScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.verify}>Verifying phone number</Text>
@@ -21,4 +21,4 @@ const BlankScreen = () => {
 
 
 
-export default BlankScreen;
+export default LoadingScreen;
