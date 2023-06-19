@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   prevnum: {
     width: 'auto',
     height: 'auto',
-    // will be taken from previous page
     marginLeft: 105,
   },
   regview: {
@@ -68,9 +67,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginLeft: 1,
   },
-  filledPasscodeBox: {
+  selectedPasscodeBox: {
     borderColor: 'darkblue',
     borderWidth: 2,
+  },
+  filledPasscodeBox: {
+    borderColor: 'darkblue',
+    borderWidth: 1,
   },
   filledPasscodeBoxError: {
     borderColor: 'red',
@@ -78,8 +81,8 @@ const styles = StyleSheet.create({
   },
   resend: {
     fontSize: 16,
-    marginLeft: 54,
-    marginRight: 54,
+    marginLeft: 124,
+    marginRight: 94,
     marginBottom: 298,
     width: 'auto',
     height: 'auto',
@@ -109,12 +112,14 @@ const FIRSTImage = () => {
 const PasscodeScreen = () => {
   const [passcode, setPasscode] = useState(['', '', '', '']);
   const [passcodeError, setPasscodeError] = useState(false);
+  const [selectedBox, setSelectedBox] = useState(null);
   const passcodeInputs = useRef([]);
 
   const handlePasscodeChange = (index, value) => {
     const updatedPasscode = [...passcode];
     updatedPasscode[index] = value;
     setPasscode(updatedPasscode);
+    setSelectedBox(index);
 
     if (value && index < passcodeInputs.current.length - 1) {
       passcodeInputs.current[index + 1].focus();
@@ -132,11 +137,6 @@ const PasscodeScreen = () => {
     }
   };
 
-  const handleSupportTextPress = () => {
-    const supportURL = ''; // Replace with your contact web page URL
-    Linking.openURL(supportURL);
-  };
-
   return (
     <View style={styles.regview}>
       <Text style={styles.enter}>Enter 4 digit code sent to</Text>
@@ -147,7 +147,7 @@ const PasscodeScreen = () => {
           <TextInput
             key={index}
             ref={(ref) => (passcodeInputs.current[index] = ref)}
-            secureTextEntry
+            secureTextEntry={false}
             keyboardType="numeric"
             maxLength={1}
             value={digit}
@@ -155,8 +155,15 @@ const PasscodeScreen = () => {
             style={[
               styles.passcodeBox,
               digit && styles.filledPasscodeBox,
+              selectedBox === index && styles.selectedPasscodeBox,
               passcodeError && digit && styles.filledPasscodeBoxError,
             ]}
+            autoFocus={index === 0}
+            onKeyPress={({ nativeEvent }) => {  
+              if (nativeEvent.key === 'Backspace' && !digit && index > 0) {
+                passcodeInputs.current[index - 1].focus();
+              }
+            }}
           />
         ))}
       </View>
@@ -166,7 +173,7 @@ const PasscodeScreen = () => {
       <TouchableOpacity style={styles.button} onPress={handleVerifyPasscode}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
-      <Text style={styles.resend}>You can resend the passcode after 24 seconds</Text>
+      <Text style={styles.resend}>Resend Passcode</Text>
     </View>
   );
 };
